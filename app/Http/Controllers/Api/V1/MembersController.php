@@ -3,17 +3,24 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Member;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class MembersController extends Controller
 {
     public function index()
     {
 	$query = Member::query();
-//	$query->where('email','like','%'.'ab'.'%');
+
+	$email = Input::get('email');
+	if (!empty($email)) {
+	   $query->where('email','like','%'.$email.'%');
+        }
 
 	$members = $query->paginate();
+
+
 	return $members ;
     }
 
