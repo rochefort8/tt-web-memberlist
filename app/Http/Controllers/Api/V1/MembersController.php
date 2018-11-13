@@ -10,7 +10,11 @@ class MembersController extends Controller
 {
     public function index()
     {
-        return Member::all();
+	$query = Member::query();
+//	$query->where('email','like','%'.'ab'.'%');
+
+	$members = $query->paginate();
+	return $members ;
     }
 
     public function show($id)
