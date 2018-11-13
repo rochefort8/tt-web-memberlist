@@ -19,7 +19,7 @@
                     </ul>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-		<input type="text" class="form-control" id="" v-model="search" placeholder="Type content...">
+		<input type="text" class="form-control" id="" v-model="keyword" placeholder="Type content...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -31,8 +31,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">MembersS list</div>
             <div class="panel-body">
-
-	        <div class="row">
+               <div class="row">
 	          <div class="col-sm-6">
                     <ul class="pagination">
                       <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(1)">&laquo;</a></li>
@@ -85,11 +84,17 @@
 	        last_page: 1,
 	        total: 1,
 		from: 0,
-		to: 0
+		to: 0,
+		keyword: ''
             }
         },
         mounted() {
 	    this.load(1);
+        },
+	watch: {
+           keyword: function (q) {
+	   alert(q);
+           }
         },
         methods: {
             load(page) {	
