@@ -93,7 +93,20 @@
         },
 	watch: {
            keyword: function (q) {
-	   alert(q);
+	        var app = this;
+		axios.get('/api/v1/members?email=' + q)
+		.then(function (resp) {
+		    app.members = resp.data.data;
+		    app.current_page = resp.data.current_page;
+		    app.last_page = resp.data.last_page;
+		    app.total = resp.data.total;
+		    app.from = resp.data.from;
+		    app.to = resp.data.to;
+		})
+                .catch(function (resp) {
+                    console.log(resp);
+                    alert("Could not load members");
+                });	   
            }
         },
         methods: {

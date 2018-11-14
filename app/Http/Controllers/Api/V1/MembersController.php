@@ -19,8 +19,6 @@ class MembersController extends Controller
         }
 
 	$members = $query->paginate();
-
-
 	return $members ;
     }
 
