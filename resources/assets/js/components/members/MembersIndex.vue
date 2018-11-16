@@ -47,18 +47,25 @@
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th width="100">&nbsp;</th>
+                        <th>卒業期</th>
+                        <th>お名前</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>性別</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
 		    <tbody>
                     <tr v-for="member, index in members">
-                        <td>{{ member.name }}</td>
-                        <td>{{ member.email }}</td>
-
+                        <td>{{ member.graduate }}</td>
+                        <td>{{ member.last_name_kanji }}</td>
+                        <td>{{ member.first_name_kanji }}</td>
+                        <td>{{ member.last_name_kana }}</td>
+                        <td>{{ member.first_name_kana }}</td>
+                        <td>{{ member.gender }}</td>
                         <td>
-                            <router-link :to="{name: 'editMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></router-link>
+                            <router-link :to="{name: 'viewMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></router-link>
                             <router-link :to="{name: 'editMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-pencil"></i>
                             </router-link>
                             <a href="#"
@@ -66,7 +73,6 @@
                                v-on:click="deleteEntry(member.id, index)"><i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </td>
-
                     </tr>
                     </tbody>
                 </table>
