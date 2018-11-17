@@ -20,7 +20,7 @@
                 </ul>
             </div>
             <input type="hidden" name="search_param" value="all" id="search_param">         
-            <input type="text" class="form-control" id="" v-model="keyword" placeholder="Type content...">
+            <input type="text" class="form-control" id="search_keyword" v-model="keyword" placeholder="Type content...">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
             </span>
@@ -29,49 +29,50 @@
         <div class="panel panel-default">
             <div class="panel-heading">MembersS list</div>
             <div class="panel-body">
-               <div class="row">
-	          <div class="col-sm-6">
-                    <ul class="pagination">
-                      <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(1)">&laquo;</a></li>
-	              <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(current_page - 1)">&lt;</a></li>
-		      <li v-for="page in pages" :key="page" :class="{active: page === current_page}">
-                      <a href="#" @click="change(page)">{{page}}</a>
-		      </li>
-                      <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(current_page + 1)">&gt;</a></li>
-		      <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(last_page)">&raquo;</a></li>
-	          </ul>
+                <div class="row">
+	                <div class="col-sm-6">
+                        <ul class="pagination">
+                            <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(1)">&laquo;</a></li>
+                            <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(current_page - 1)">&lt;</a></li>
+                            <li v-for="page in pages" :key="page" :class="{active: page === current_page}">
+                                <a href="#" @click="change(page)">{{page}}</a>
+                            </li>
+                            <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(current_page + 1)">&gt;</a></li>
+                            <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(last_page)">&raquo;</a></li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 40px" class="col-sm-6 text-right">全 {{total}} 件中 {{from}} 〜 {{to}} 件表示</div>
                 </div>
-	        <div style="margin-top: 40px" class="col-sm-6 text-right">全 {{total}} 件中 {{from}} 〜 {{to}} 件表示</div></div>
                 <table class="table table-hover table-striped">
                     <thead>
-                    <tr>
-                        <th>卒業期</th>
-                        <th>お名前</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>性別</th>
-                        <th>操作</th>
-                    </tr>
+                        <tr>
+                            <th>卒業期</th>
+                            <th>お名前</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>性別</th>
+                            <th>操作</th>
+                        </tr>
                     </thead>
-		    <tbody>
-                    <tr v-for="member, index in members">
-                        <td>{{ member.graduate }}</td>
-                        <td>{{ member.last_name_kanji }}</td>
-                        <td>{{ member.first_name_kanji }}</td>
-                        <td>{{ member.last_name_kana }}</td>
-                        <td>{{ member.first_name_kana }}</td>
-                        <td>{{ member.gender }}</td>
-                        <td>
-                            <router-link :to="{name: 'viewMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></router-link>
-                            <router-link :to="{name: 'editMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-pencil"></i>
-                            </router-link>
-                            <a href="#"
-                               class="btn btn-xs btn-danger"
-                               v-on:click="deleteEntry(member.id, index)"><i class="glyphicon glyphicon-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr v-for="member, index in members">
+                            <td>{{ member.graduate }}</td>
+                            <td>{{ member.last_name_kanji }}</td>
+                            <td>{{ member.first_name_kanji }}</td>
+                            <td>{{ member.last_name_kana }}</td>
+                            <td>{{ member.first_name_kana }}</td>
+                            <td>{{ member.gender }}</td>
+                            <td>
+                                <router-link :to="{name: 'viewMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></router-link>
+                                <router-link :to="{name: 'editMember', params: {id: member.id}}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-pencil"></i>
+                                </router-link>
+                                <a href="#"
+                                class="btn btn-xs btn-danger"
+                                v-on:click="deleteEntry(member.id, index)"><i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>    
                     </tbody>
                 </table>
             </div>
@@ -130,7 +131,13 @@
         methods: {
             load(page) {	
                 var app = this;
-                axios.get('/api/v1/members?page=' + page)
+                var url = '/api/v1/members?page=' + page ;
+
+                if (this.keyword != "") {
+                    url = url + '&' + this.search_item + '=' + this.keyword;
+                }
+                
+                axios.get(url)
                 .then(function (resp) {
                     app.members = resp.data.data;
                     app.current_page = resp.data.current_page;
@@ -162,6 +169,8 @@
             updateOption(option,text) {
                 this.search_item = option;
                 $('.search-panel span#search_concept').text(text);
+                this.keyword = '';
+                this.load(1);
             },
             toggleMenu() {
               this.showMenu = !this.showMenu;
