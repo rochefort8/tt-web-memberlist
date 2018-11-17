@@ -11,15 +11,35 @@ class MembersController extends Controller
 {
     public function index()
     {
-	$query = Member::query();
+        $query = Member::query();
+        $params = Input::get();
+        \Log::info($params);
 
-	$email = Input::get('email');
-	if (!empty($email)) {
-	   $query->where('email','like','%'.$email.'%');
+        $keywords = [ 'email', 'address', 'graduate', 'junior_high_school', 'club'];
+        foreach($keywords as $str) {   
+            if (!empty($params[$str])) {
+                $value = $params[$str] ;
+                $query->where($str,'like','%'.$value.'%');
+            }    
         }
+        $str = 'phone' ;
+        if (!empty($params[$str])) {
+            $query->where('phone1','like','%'.$value.'%');
+            $query->orWhere('phone2','like','%'.$value.'%');
+        }
+      
+        $str = 'name' ;
+        if (!empty($params[$str])) {
+            $value = mb_convert_kana($params[$str],'KC','UTF-8') ;
 
-	$members = $query->paginate();
-	return $members ;
+            $query->where('first_name_kanji','like','%'.$value.'%');
+            $query->orWhere('last_name_kanji','like','%'.$value.'%');
+            $query->orWhere('first_name_kana','like','%'.$value.'%');
+            $query->orWhere('last_name_kana','like','%'.$value.'%');
+        }
+//        $query->orderBy('last_name_kana','asc');
+        $members = $query->paginate();
+        return $members ;
     }
 
     public function show($id)
