@@ -5,38 +5,59 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Edit member</div>
+            <div class="panel-heading">
+		        <p>{{ member.graduate }}期</p>
+	            <h1>{{ member.last_name_kanji }} {{ member.first_name_kanji }}</h1>
+		        <p class="lead">{{ member.last_name_kana }} {{ member.first_name_kana }}</p>
+	        </div>
             <div class="panel-body">
                 <form v-on:submit="saveForm()">
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Member name</label>
-                            <input type="text" v-model="member.name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Member address</label>
-                            <input type="text" v-model="member.address" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Member website</label>
-                            <input type="text" v-model="member.website" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Member email</label>
-                            <input type="text" v-model="member.email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <button class="btn btn-success">Update</button>
-                        </div>
-                    </div>
+            	    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>住所</th>
+                                <td>{{ member.postcode }}<br>{{ member.address }}</td>
+                            </tr>
+                            <tr>
+                                <th>メールアドレス</th>
+                                <td><input type="text" v-model="member.email" class="form-control"></td>
+
+                            </tr>
+                            <tr>
+                                <th>電話番号1</th>
+                                <td>{{ member.phone1 }}</td>
+                            </tr>
+                            <tr>
+                                <th>電話番号2</th>
+                                <td>{{ member.phone2 }}</td>
+                            </tr>
+                            <tr>
+                                <th>出身中学</th>
+                                <td>{{ member.junior_high_school }}</td>
+                            </tr>
+                            <tr>
+                                <th>部活動</th>
+                                <td>{{ member.club }}</td>
+                            </tr>
+                            <tr>
+                                <th>夫婦</th>
+                                <td>{{ member.couple }}</td>
+                            </tr>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ member.id }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>期別幹事</th>
+                                <td>{{ member.representative }}</td>
+                            </tr>
+                            <tr>
+                                <th>備考</th>
+                                <td>{{ member.remarks }}</td>
+                            </tr>
+                        </tbody>
+        		    </table>
                 </form>
             </div>
         </div>
