@@ -289,14 +289,20 @@
             }
         },
         watch : {
-            zip: function (q) {
-                axios.get('http://zipcloud.ibsnet.co.jp/api/search?zipcode=7830060')
-                    .then(function (resp) {
-                        console.log(resp);
-                    })
-                    .catch(function (resp) {
-                        console.log(resp);
-                    });
+            zip: function (zipcode) {
+                var url = '/api/v1/zip2addr?zipcode=' + zipcode ;                
+                axios.get(url)
+                .then(function (resp) {
+                    alert(resp.status);
+                    if (resp.results != null) {
+                        address = resp.results.address1 + resp.results.address2 + resp.results.address3 ;
+                        alert(address);
+                    }
+                })
+                .catch(function (resp) {
+                    console.log(resp);
+
+                });
             }
         },
     }

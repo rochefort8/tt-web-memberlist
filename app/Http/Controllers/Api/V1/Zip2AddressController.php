@@ -28,6 +28,6 @@ class Zip2AddressController extends Controller
         \Log::info($res->getHeader('content-type'));
         // 'application/json; charset=utf8'
         \Log::info($res->getBody());
-        return $res->getBody();   
+        return $res->getBody();
     }
 }
