@@ -213,7 +213,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12 has-feedback">
                             <label for="address" class="control-label">市区町村/番地</label>
-                            <input type="text" class="form-control" name="address" id="address" x-autocompletetype="street-address">
+                            <input type="text" class="form-control" name="address" v-model="address11" x-autocompletetype="street-address">
                         </div>
                     </div>
 
@@ -268,6 +268,7 @@
     export default {
         data: function () {
             return {
+                address : '',
                 clubs : [
                     '吹奏楽','ボート','野球',
                 ],
@@ -293,10 +294,11 @@
                 var url = '/api/v1/zip2addr?zipcode=' + zipcode ;                
                 axios.get(url)
                 .then(function (resp) {
-                    alert(resp.status);
-                    if (resp.results != null) {
-                        address = resp.results.address1 + resp.results.address2 + resp.results.address3 ;
-                        alert(address);
+                    if (resp.data.results != null) {
+                        var address = resp.data.results[0].address1 + 
+                                    resp.data.results[0].address2 + 
+                                    resp.data.results[0].address3 ;
+                        this.address11 = address ;
                     }
                 })
                 .catch(function (resp) {
