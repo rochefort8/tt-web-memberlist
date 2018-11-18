@@ -133,7 +133,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12 has-feedback">
                             <label for="zip" class="control-label">郵便番号</label>
-                            <input type="text" class="form-control alphabet" name="zip" id="zip" placeholder="xxx-xxxx" pattern="\d{3}[\-\s]?\d{4}" x-autocompletetype="postal-code">
+                            <input type="text" class="form-control alphabet" name="zip" v-model="zip" placeholder="xxx-xxxx" pattern="\d{3}[\-\s]?\d{4}" x-autocompletetype="postal-code">
                             <span class="help-block">入力後に住所が自動入力されます</span>
                         </div>
 
@@ -258,7 +258,6 @@
                             </select>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -272,12 +271,7 @@
                 clubs : [
                     '吹奏楽','ボート','野球',
                 ],
-                member: {
-                    name: '',
-                    address: '',
-                    website: '',
-                    email: '',
-                }
+                zip: ''
             }
         },
         methods: {
@@ -293,6 +287,17 @@
                         alert("Could not create your member");
                     });
             }
-        }
+        },
+        watch : {
+            zip: function (q) {
+                axios.get('http://zipcloud.ibsnet.co.jp/api/search?zipcode=7830060')
+                    .then(function (resp) {
+                        console.log(resp);
+                    })
+                    .catch(function (resp) {
+                        console.log(resp);
+                    });
+            }
+        },
     }
 </script>

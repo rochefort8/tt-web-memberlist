@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
+use GuzzleHttp\Client;
+
 class MembersController extends Controller
 {
     public function index()
@@ -66,5 +68,19 @@ class MembersController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
         return '';
+    }
+
+    public function getAddress($zipcode)
+    {
+        $client = new Client();
+        $res = $client->request('GET', 'http://zipcloud.ibsnet.co.jp/api/search?zipcode=' + $zipcode, [
+
+        ]);
+        \Log::info($res->getStatusCode());
+        // "200"
+        \Log::info($res->getHeader('content-type'));
+        // 'application/json; charset=utf8'
+        \Log::info($res->getBody());
+        return $res->getBody();
     }
 }
