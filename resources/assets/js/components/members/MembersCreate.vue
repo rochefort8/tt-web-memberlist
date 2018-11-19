@@ -38,7 +38,7 @@
                         <div class="col-xs-12 form-group">
                             <label for="graduate" class="control-label">卒業期</label>
                         
-                                <select name="graduate" id="graduate" class="form-control" x-autocompletetype="region">
+                                <select v-model="graduate" class="form-control" x-autocompletetype="region">
                                     <option value="" selected="selected">-- 卒業期 --</option>
                                     <option value="40">40期(1942年/昭和17年卒)</option>
                                     <option value="41">41期(1943年/昭和18年卒)</option>
@@ -139,7 +139,7 @@
 
                         <div class="form-group col-xs-12 has-feedback">
                             <label for="pref" class="control-label">都道府県</label>
-                            <select name="pref" id="pref" class="form-control" x-autocompletetype="region">
+                            <select v-model="pref" class="form-control" x-autocompletetype="region">
                                 <option value="" selected="selected">-- 都道府県 --</option>
                                 <optgroup label="北海道">
                                     <option value="1">北海道</option>
@@ -213,7 +213,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12 has-feedback">
                             <label for="address" class="control-label">市区町村/番地</label>
-                            <input type="text" class="form-control" name="address" v-model="address11" x-autocompletetype="street-address">
+                            <input type="text" class="form-control" v-model="address" x-autocompletetype="street-address">
                         </div>
                     </div>
 
@@ -236,7 +236,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label for="graduate" class="control-label">出身中学</label>                    
+                            <label for="junior_high_school" class="control-label">出身中学</label>                    
                             <select name="junior_high_school" id="junior_high_school" class="form-control" x-autocompletetype="region">
                                 <option value="" selected="selected">-- 出身中学 --</option>
                                 
@@ -250,7 +250,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label for="club" class="control-label">部活動</label>           
-                            <select v-model="selected_item" options="items" class="form-control" x-autocompletetype="region">
+                            <select v-model="club" options="items" class="form-control" x-autocompletetype="region">
                                 <option value="" selected="selected">-- 部活動 --</option>
                                 <option v-for="club in clubs">
                                     {{ club }}
@@ -268,7 +268,9 @@
     export default {
         data: function () {
             return {
+	    	graduate : '',
                 address : '',
+                pref : '',		
                 clubs : [
                     '吹奏楽','ボート','野球',
                 ],
@@ -295,10 +297,10 @@
                 axios.get(url)
                 .then(function (resp) {
                     if (resp.data.results != null) {
-                        var address = resp.data.results[0].address1 + 
-                                    resp.data.results[0].address2 + 
+                        var address = resp.data.results[0].address2 + 
                                     resp.data.results[0].address3 ;
-                        this.address11 = address ;
+                        this.pref = resp.data.results[0].address1 ;
+                        this.address = address ;
                     }
                 })
                 .catch(function (resp) {
