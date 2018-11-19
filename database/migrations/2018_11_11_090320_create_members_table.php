@@ -14,11 +14,26 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
+            $table->string('graduate')->nullable();
+            $table->string('id')->nullable();
+            $table->string('former_name_kanji')->nullable();
+            $table->string('last_name_kanji')->nullable();
+            $table->string('first_name_kanji')->nullable();
+            $table->string('former_name_kana')->nullable();
+            $table->string('last_name_kana')->nullable();
+            $table->string('first_name_kana')->nullable();
+            $table->string('gender')->nullable();	    	    
+            $table->string('postcode')->nullable();
             $table->string('address')->nullable();
-            $table->timestamps();
+	    $table->string('phone1')->nullable();
+	    $table->string('phone2')->nullable();
+            $table->string('email')->nullable();
+            $table->string('club')->nullable();
+            $table->string('junior_high_school')->nullable();
+            $table->string('couple')->nullable();	    	    	    
+            $table->string('representative')->nullable();
+            $table->string('bereau')->nullable();
+            $table->string('remarks')->nullable();	    
         });
     }
 
