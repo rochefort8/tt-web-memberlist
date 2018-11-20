@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('yubinbango-core');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';

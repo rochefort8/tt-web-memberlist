@@ -294,18 +294,19 @@
         watch : {
             zip: function (zipcode) {
                 var url = '/api/v1/zip2addr?zipcode=' + zipcode ;                
+                var app = this;
+
                 axios.get(url)
                 .then(function (resp) {
                     if (resp.data.results != null) {
                         var address = resp.data.results[0].address2 + 
                                     resp.data.results[0].address3 ;
-                        this.pref = resp.data.results[0].address1 ;
-                        this.address = address ;
+                        app.pref = resp.data.results[0].address1 ;
+                        app.address = address ;
                     }
                 })
                 .catch(function (resp) {
                     console.log(resp);
-
                 });
             }
         },
