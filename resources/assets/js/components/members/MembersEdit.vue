@@ -15,46 +15,88 @@
             	    <table class="table">
                         <tbody>
                             <tr>
+                                <th>お名前(漢字)</th>
+                                <td>{{ member.last_name_kanji }} {{ member.first_name_kanji }}</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>お名前(カナ)</th>
+                                <td>{{ member.last_name_kana }} {{ member.first_name_kana }}</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>卒業期</th>
+                                <td>{{ member.graduate }}期</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>住所</th>
                                 <td>{{ member.postcode }}<br>{{ member.address }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>メールアドレス</th>
-                                <td><input type="text" v-model="member.email" class="form-control"></td>
-
+                                <td>
+                                    <div v-if="show">{{ member.email }}</div>
+                                    <div v-else><input type="text" v-model="member.email" class="form-control"></div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-default" @click="show = !show"><i class="glyphicon glyphicon-pencil"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <th>電話番号1</th>
                                 <td>{{ member.phone1 }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-default"  @click="show = !show"><i class="glyphicon glyphicon-pencil"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <th>電話番号2</th>
                                 <td>{{ member.phone2 }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>出身中学</th>
                                 <td>{{ member.junior_high_school }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>部活動</th>
                                 <td>{{ member.club }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>夫婦</th>
                                 <td>{{ member.couple }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>ID</th>
                                 <td>{{ member.id }}</td>
+                                <td>
+                                </td>
                             </tr>
 
                             <tr>
                                 <th>期別幹事</th>
                                 <td>{{ member.representative }}</td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
                                 <th>備考</th>
                                 <td>{{ member.remarks }}</td>
+                                <td>
+                                </td>
                             </tr>
                         </tbody>
         		    </table>
@@ -80,6 +122,7 @@
         },
         data: function () {
             return {
+                show: 'false',
                 memberId: null,
                 member: {
                     name: '',
