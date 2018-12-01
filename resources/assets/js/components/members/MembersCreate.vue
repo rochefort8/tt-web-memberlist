@@ -34,94 +34,17 @@
                             </div>
                         </div>
                     </div>  
+
                     <div class="row">
-                        <div class="col-xs-12 form-group">
+                        <div class="form-group col-xs-12 has-feedback">
                             <label for="graduate" class="control-label">卒業期</label>
-                        
-                                <select v-model="graduate" class="form-control" x-autocompletetype="region">
-                                    <option value="" selected="selected">-- 卒業期 --</option>
-                                    <option value="40">40期(1942年/昭和17年卒)</option>
-                                    <option value="41">41期(1943年/昭和18年卒)</option>
-                                    <option value="42">42期(1944年/昭和19年卒)</option>
-                                    <option value="43">43期(1945年/昭和20年卒)</option>
-                                    <option value="44">44期(1946年/昭和21年卒)</option>
-                                    <option value="45">45期(1947年/昭和22年卒)</option>
-                                    <option value="46">46期(1948年/昭和23年卒)</option>
-                                    <option value="47">47期(1949年/昭和24年卒)</option>
-                                    <option value="48">48期(1950年/昭和25年卒)</option>
-                                    <option value="49">49期(1951年/昭和26年卒)</option>
-                                    <option value="50">50期(1952年/昭和27年卒)</option>
-                                    <option value="51">51期(1953年/昭和28年卒)</option>
-                                    <option value="52">52期(1954年/昭和29年卒)</option>
-                                    <option value="53">53期(1955年/昭和30年卒)</option>
-                                    <option value="54">54期(1956年/昭和31年卒)</option>
-                                    <option value="55">55期(1957年/昭和32年卒)</option>
-                                    <option value="56">56期(1958年/昭和33年卒)</option>
-                                    <option value="57">57期(1959年/昭和34年卒)</option>
-                                    <option value="58">58期(1960年/昭和35年卒)</option>
-                                    <option value="59">59期(1961年/昭和36年卒)</option>
-                                    <option value="60">60期(1962年/昭和37年卒)</option>
-                                    <option value="61">61期(1963年/昭和38年卒)</option>
-                                    <option value="62">62期(1964年/昭和39年卒)</option>
-                                    <option value="63">63期(1965年/昭和40年卒)</option>
-                                    <option value="64">64期(1966年/昭和41年卒)</option>
-                                    <option value="65">65期(1967年/昭和42年卒)</option>
-                                    <option value="66">66期(1968年/昭和43年卒)</option>
-                                    <option value="67">67期(1969年/昭和44年卒)</option>
-                                    <option value="68">68期(1970年/昭和45年卒)</option>
-                                    <option value="69">69期(1971年/昭和46年卒)</option>
-                                    <option value="70">70期(1972年/昭和47年卒)</option>
-                                    <option value="71">71期(1973年/昭和48年卒)</option>
-                                    <option value="72">72期(1974年/昭和49年卒)</option>
-                                    <option value="73">73期(1975年/昭和50年卒)</option>
-                                    <option value="74">74期(1976年/昭和51年卒)</option>
-                                    <option value="75">75期(1977年/昭和52年卒)</option>
-                                    <option value="76">76期(1978年/昭和53年卒)</option>
-                                    <option value="77">77期(1979年/昭和54年卒)</option>
-                                    <option value="78">78期(1980年/昭和55年卒)</option>
-                                    <option value="79">79期(1981年/昭和56年卒)</option>
-                                    <option value="80">80期(1982年/昭和57年卒)</option>
-                                    <option value="81">81期(1983年/昭和58年卒)</option>
-                                    <option value="82">82期(1984年/昭和59年卒)</option>
-                                    <option value="83">83期(1985年/昭和60年卒)</option>
-                                    <option value="84">84期(1986年/昭和61年卒)</option>
-                                    <option value="85">85期(1987年/昭和62年卒)</option>
-                                    <option value="86">86期(1988年/昭和63年卒)</option>
-                                    <option value="87">87期(1989年/平成1年卒)</option>
-                                    <option value="88">88期(1990年/平成2年卒)</option>
-                                    <option value="89">89期(1991年/平成3年卒)</option>
-                                    <option value="90">90期(1992年/平成4年卒)</option>
-                                    <option value="91">91期(1993年/平成5年卒)</option>
-                                    <option value="92">92期(1994年/平成6年卒)</option>
-                                    <option value="93">93期(1995年/平成7年卒)</option>
-                                    <option value="94">94期(1996年/平成8年卒)</option>
-                                    <option value="95">95期(1997年/平成9年卒)</option>
-                                    <option value="96">96期(1998年/平成10年卒)</option>
-                                    <option value="97">97期(1999年/平成11年卒)</option>
-                                    <option value="98">98期(2000年/平成12年卒)</option>
-                                    <option value="99">99期(2001年/平成13年卒)</option>
-                                    <option value="100">100期(2002年/平成14年卒)</option>
-                                    <option value="101">101期(2003年/平成15年卒)</option>
-                                    <option value="102">102期(2004年/平成16年卒)</option>
-                                    <option value="103">103期(2005年/平成17年卒)</option>
-                                    <option value="104">104期(2006年/平成18年卒)</option>
-                                    <option value="105">105期(2007年/平成19年卒)</option>
-                                    <option value="106">106期(2008年/平成20年卒)</option>
-                                    <option value="107">107期(2009年/平成21年卒)</option>
-                                    <option value="108">108期(2010年/平成22年卒)</option>
-                                    <option value="109">109期(2011年/平成23年卒)</option>
-                                    <option value="110">110期(2012年/平成24年卒)</option>
-                                    <option value="111">111期(2013年/平成25年卒)</option>
-                                    <option value="112">112期(2014年/平成26年卒)</option>
-                                    <option value="113">113期(2015年/平成27年卒)</option>
-                                    <option value="114">114期(2016年/平成28年卒)</option>
-                                    <option value="115">115期(2017年/平成29年卒)</option>
-                                    <option value="116">116期(2018年/平成30年卒)</option>
-                                    <option value="0">不明</option>
-                                    <option value="-1">非卒業生</option>
-                                </select>
-                            </div>
-                      
+                            <select v-model="graduate" class="form-control" x-autocompletetype="region">
+                                <option value="" selected="selected">-- 卒業期 --</option>
+                                <option v-for="graduate in graduates" v-bind:value="graduate.value">
+                                    {{ graduate.value }}期({{ graduate.string }})
+                                </option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -210,7 +133,7 @@
             return {
 	    	    graduate : '',
                 address : '',
-                pref : '',		
+                pref : '',
                 clubs : [
                     '吹奏楽','ボート','野球',
                 ],
@@ -228,8 +151,13 @@
                     ['徳島県','香川県','愛媛県','高知県'],
                     ['福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県']
                 ],
-                zip: ''
+                zip: '',
+                graduate_youngest: '',
+                graduates : []
             }
+        },
+        created: function () {
+            this.createGraduateTable();
         },
         methods: {
             saveForm() {
@@ -243,6 +171,26 @@
                         console.log(resp);
                         alert("Could not create your member");
                     });
+            },
+            createGraduateTable: function() {
+                var _year = 1942 ;
+                var max_year = new Date().getFullYear();
+
+                for (;_year <= max_year;_year++) {
+                    var _graduate = _year - 1902 ;
+                    var _gengo = '' ;
+
+                    if (_year <= 1988) {
+                        _gengo = '昭和' + String(_year - 1925) + '年';
+                    } else
+                    if (_year <= 2018) {
+                        _gengo = '平成' + String(_year - 1988) + '年';
+                    } else {
+                        _gengo = '新しい元号' + String(_year - 2018) + '年';
+                    }
+                    this.graduates.push({ value : String(_graduate),
+                                        string : String(_year) + '年/' + _gengo + '卒' });
+                }
             }
         },
         watch : {
